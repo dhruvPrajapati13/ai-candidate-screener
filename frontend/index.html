@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Candidate Evaluator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <div class="logo">🧠</div>
+    <div>
+      <h1>AI Candidate Screening</h1>
+      <p>Upload a resume and intro video to get an AI-powered summary and score.</p>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ── Step 1: Upload ─────────────────────────────── -->
+    <section id="section-upload" class="card">
+      <h2>Upload Candidate Files</h2>
+
+      <div class="upload-grid">
+
+        <div class="upload-box" id="box-resume">
+          <label for="input-resume">
+            <span class="upload-icon">📄</span>
+            <span class="upload-label">Resume</span>
+            <span class="upload-hint">PDF or DOCX</span>
+          </label>
+          <input type="file" id="input-resume" accept=".pdf,.docx,.doc" />
+          <div class="file-name" id="name-resume">No file chosen</div>
+        </div>
+
+        <div class="upload-box" id="box-video">
+          <label for="input-video">
+            <span class="upload-icon">🎥</span>
+            <span class="upload-label">Intro Video</span>
+            <span class="upload-hint">MP4, MOV, or WebM</span>
+          </label>
+          <input type="file" id="input-video" accept=".mp4,.mov,.webm,.avi" />
+          <div class="file-name" id="name-video">No file chosen</div>
+        </div>
+
+      </div>
+
+      <button id="btn-analyze" disabled>Analyze Candidate</button>
+    </section>
+
+    <!-- ── Step 2: Progress ───────────────────────────── -->
+    <section id="section-progress" class="card hidden">
+      <h2>Analyzing candidate...</h2>
+      <div class="steps">
+        <div class="step" id="step-resume">
+          <span class="step-dot"></span>
+          Parsing resume
+        </div>
+        <div class="step" id="step-video">
+          <span class="step-dot"></span>
+          Transcribing video (this may take a minute)
+        </div>
+        <div class="step" id="step-scoring">
+          <span class="step-dot"></span>
+          Scoring with Gemini AI
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Step 3: Results ────────────────────────────── -->
+    <section id="section-results" class="card hidden">
+
+      <div class="results-header">
+        <div>
+          <h2 id="result-name">Candidate</h2>
+          <span class="badge" id="result-recommendation">—</span>
+        </div>
+        <div class="overall-score">
+          <span id="result-overall">—</span>
+          <small>/ 10 overall</small>
+        </div>
+      </div>
+
+      <div class="summary-box">
+        <h3>Summary</h3>
+        <p id="result-summary">—</p>
+      </div>
+
+      <div class="two-col">
+        <div>
+          <h3>Strengths</h3>
+          <ul id="result-strengths"></ul>
+        </div>
+        <div>
+          <h3>Areas for improvement</h3>
+          <ul id="result-weaknesses"></ul>
+        </div>
+      </div>
+
+      <div class="scores-grid">
+        <h3>Score breakdown</h3>
+        <div class="score-card">
+          <div class="score-label">Technical skills</div>
+          <div class="score-bar-wrap">
+            <div class="score-bar" id="bar-technical"></div>
+          </div>
+          <div class="score-num" id="num-technical">—</div>
+        </div>
+        <div class="score-card">
+          <div class="score-label">Communication</div>
+          <div class="score-bar-wrap">
+            <div class="score-bar" id="bar-communication"></div>
+          </div>
+          <div class="score-num" id="num-communication">—</div>
+        </div>
+        <div class="score-card">
+          <div class="score-label">Experience</div>
+          <div class="score-bar-wrap">
+            <div class="score-bar" id="bar-experience"></div>
+          </div>
+          <div class="score-num" id="num-experience">—</div>
+        </div>
+        <div class="score-card">
+          <div class="score-label">Project quality</div>
+          <div class="score-bar-wrap">
+            <div class="score-bar" id="bar-projects"></div>
+          </div>
+          <div class="score-num" id="num-projects">—</div>
+        </div>
+      </div>
+
+      <div class="consistency-box">
+        <h3>Resume vs Video consistency</h3>
+        <p id="result-consistency">—</p>
+      </div>
+
+      <button id="btn-reset">Analyze another candidate</button>
+
+    </section>
+
+    <!-- ── Error ──────────────────────────────────────── -->
+    <div id="error-box" class="hidden error-box"></div>
+
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+# Web framework
+fastapi
+uvicorn[standard]
+
+# File handling
+python-multipart
+
+# Resume parsing
+pdfplumber
+python-docx
+docx2txt
+# pyresparser
+
+# Video / audio
+# faster-whisper
+
+ffmpeg-python
+
+google-generativeai
+# openai
+
+# Environment variables
+python-dotenv==1.0.1
+
+# Utilities
+pydantic
+aiofiles
+
+transformers
+torch
+torchaudio
